@@ -1,0 +1,12 @@
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Local data
+server/data/
+.env
+
+# Editor
+.vscode/
+.DS_Store
