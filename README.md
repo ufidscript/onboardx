@@ -1,26 +1,43 @@
 # OnboardX (local demo)
 
-Purpose: local, synthetic demo of handover notes, retrieval-backed QA and export. This repo implements the MVP described in onboardxPrd.md.
+A local single-user app for saving community handover notes, asking source-backed questions, and producing a cited handover draft. This is a local demo — no cloud services required.
 
-Status: Stage 0 inspection completed. Node.js is not installed in this environment; Ollama is present (version 0.40.13). Git is available (2.56.0).
+Prerequisites
+- Node.js 18+ and npm
+- Ollama installed with a local model (recommended: gemma3:1b)
 
-Prerequisites (developer machine):
-- Node.js 18+ LTS (install from https://nodejs.org/)
-- npm (bundled with Node)
-- Ollama installed with a local model (default: gemma3:1b)
+Setup
+1. Create a local .env (copy .env.example):
+   Copy-Item .env.example .env
+   Edit .env if needed (default uses gemma3:1b and ports 3000/5178)
 
-Quick start (after installing Node and dependencies):
+2. Start server (separate shell):
+   cd C:\projects\onboardx\server
+   npm install
+   npm start
 
-Server (open terminal 1):
-  cd C:\projects\onboardx\server
-  npm install express
-  npm start
+3. Start client (separate shell):
+   cd C:\projects\onboardx\client
+   npm install
+   npm run dev
 
-Client (open terminal 2):
-  cd C:\projects\onboardx\client
-  npm install react react-dom vite @vitejs/plugin-react
-  npm run dev
+URLs
+- UI (Vite dev): http://localhost:5178
+- API server: http://localhost:3000
+- Health: http://localhost:3000/api/health
 
-Visit http://localhost:5173, click "Load sample community" then ask a question.
+Quick smoke tests (PowerShell):
+$health = Invoke-RestMethod -UseBasicParsing 'http://localhost:3000/api/health'
+Write-Host "HEALTH: $($health.status) memories=$($health.memories) ollama=$($health.ollama)"
 
-Do not commit secrets or model weights.
+# Ask examples
+Invoke-RestMethod -Method Post -Uri 'http://localhost:3000/api/ask' -ContentType 'application/json' -Body '{"question":"When did installation problems delay the start?"}'
+Invoke-RestMethod -Method Post -Uri 'http://localhost:3000/api/ask' -ContentType 'application/json' -Body '{"question":"What is the server password?"}'
+
+Notes
+- The server reads .env from the repository root so start commands work whether you run them from project root or the server folder.
+- Do not commit your .env. .env.example is safe to commit.
+- This project is a local demo; a hosted live demo is optional for Hacktoberfest and not required.
+
+License / Attribution
+- Co-authored-by trailer may appear in commits if you accept Copilot's assistance. Remove it if you prefer.
