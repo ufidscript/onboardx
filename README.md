@@ -6,7 +6,8 @@ OnboardX is a local, AI-powered handover tool. It stores the decisions, lessons 
 
 Everything runs on your machine using [Gemma](https://ai.google.dev/gemma) through [Ollama](https://ollama.com). No cloud services, no API keys, and your notes never leave your computer.
 
-<!-- TODO: add a screenshot or short GIF here, e.g. ![OnboardX demo](docs/demo.gif) -->
+<img width="948" height="419" alt="image" src="https://github.com/user-attachments/assets/126254d9-6b2c-4e3c-9e00-b4f3db232b91" />
+
 
 > **Status:** local single-user demo. It is built for trying the idea out, not for multi-user or production use.
 
