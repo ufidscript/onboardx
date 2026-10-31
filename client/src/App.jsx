@@ -479,7 +479,7 @@ export default function App() {
     setCurrentTab('archive')
   }
 
-  function toggleAdd() { setShowAdd(s => !s) }
+  function toggleAdd() { setShowWelcome(false); setCurrentTab('archive'); setShowAdd(s => !s) }
 
   async function viewMemory(id) {
     setSelected(id)
